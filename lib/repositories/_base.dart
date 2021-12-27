@@ -18,7 +18,6 @@ class BaseRepository {
     dynamic data,
   }) async {
     BaseResponse response = BaseResponse(status: HTTP_INTERNAL_SERVER_ERROR, success: false);
-    ;
 
     try {
       response = await _sendRequest(

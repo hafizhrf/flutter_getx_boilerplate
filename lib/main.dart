@@ -46,7 +46,6 @@ Future<void> main() async {
   Catcher(
     runAppFunction: () async {
       WidgetsFlutterBinding.ensureInitialized();
-
       await FlutterConfig.loadEnvVariables();
 
       SystemChrome.setSystemUIOverlayStyle(
