@@ -10,7 +10,7 @@ class MockRepository extends BaseRepository {
       method: GET,
       url: 'https://jsonplaceholder.typicode.com/todos',
     ).then((response) {
-      return response;
+      return response.data;
     });
   }
 }

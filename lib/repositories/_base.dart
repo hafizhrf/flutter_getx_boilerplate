@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_boilerplate/models/responses/base_response.dart';
 import 'package:flutter_getx_boilerplate/utils/constants/http.dart';
 
 class BaseRepository {
@@ -8,7 +9,7 @@ class BaseRepository {
   BaseRepository(this._dio);
 
   @protected
-  Future<dynamic> requestApi({
+  Future<BaseResponse> requestApi({
     required String method,
     required String url,
     String? idToken = '',
@@ -16,7 +17,8 @@ class BaseRepository {
     Options? options,
     dynamic data,
   }) async {
-    dynamic response = false;
+    BaseResponse response = BaseResponse(status: HTTP_INTERNAL_SERVER_ERROR, success: false);
+    ;
 
     try {
       response = await _sendRequest(
@@ -35,7 +37,7 @@ class BaseRepository {
     }
   }
 
-  Future<dynamic> _sendRequest({
+  Future<BaseResponse> _sendRequest({
     required String method,
     required String url,
     String? idToken,
@@ -64,7 +66,18 @@ class BaseRepository {
 
       return await apiReturn.then((resp) {
         // error status code
-        return resp.data;
+        if (resp.statusCode! >= 300) {
+          return BaseResponse(
+            status: resp.statusCode,
+            success: false,
+          );
+        }
+
+        return BaseResponse(
+          status: resp.statusCode,
+          success: true,
+          data: resp.data,
+        );
       });
     } on DioError catch (ex) {
       Map<String, dynamic> _data = {
@@ -88,7 +101,12 @@ class BaseRepository {
         }
         // throw Exception(ex.message);
       }
-      return {data: _data};
+
+      return BaseResponse(
+        status: HTTP_INTERNAL_SERVER_ERROR,
+        success: false,
+        data: _data,
+      );
     }
   }
 }
