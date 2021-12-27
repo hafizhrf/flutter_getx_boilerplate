@@ -6,7 +6,6 @@ import 'package:flutter_getx_boilerplate/widgets/input/item_menu.dart';
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  // Instantiate Getx Controllers move to InitialBindings, this page just need to Get.find
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -22,7 +21,7 @@ class _HomePageState extends State<HomePage> {
         ),
         centerTitle: true,
       ),
-      // body: Text('lol'),
+      // use observeable variable from HomePageController using getx builder
       body: GetX<HomePageController>(builder: (ctrl) {
         return ListView.builder(
           itemCount: ctrl.todos.length,

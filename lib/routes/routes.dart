@@ -9,6 +9,7 @@ List<GetPage> routes = [
   ),
 ];
 
+// note that you can create separated file for grouped route
 List<GetPage> pages() {
   return routes;
 }

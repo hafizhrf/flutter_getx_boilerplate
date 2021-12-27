@@ -59,7 +59,6 @@ Future<void> main() async {
 
       SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
         (_) async {
-          // Make sure firebase initialized before app start
           runApp(MyApp());
         },
       );
@@ -102,6 +101,7 @@ class _MyAppState extends State<MyApp> {
       defaultTransition: Transition.native,
       locale: const Locale('id'),
       getPages: pages(),
+      // initial binding for initializing controller & dio service
       initialBinding: InitialBindings(),
     );
   }
