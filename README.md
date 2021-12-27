@@ -1,6 +1,6 @@
 # flutter_getx_boilerplate
 
-## flutter boilerplate with getx & dio environment that i usually use for a project, you can clone this repo if you wanna use this boilerplate
+#### flutter boilerplate with getx & dio environment that i usually use for a project, you can clone this repo if you wanna use this boilerplate
 
 ## Getting Started
 - First rename `.env.example` to `.env`
